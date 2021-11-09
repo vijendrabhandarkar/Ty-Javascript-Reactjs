@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <script>
+        var mobile = new Object()
+        mobile.name = "Oneplus"
+        mobile.color = "red"
+        mobile.price = "1000000.9"
+        mobile.memory = "4GB",
+        mobile.port = "type-c",
+        mobile.fullName=function(){
+            return mobile.name +" "+ mobile.color +" " + mobile.price +" "+ mobile.memory +" "+ mobile.port
+        }
+
+        console.log("Name " + mobile.name);
+        console.log("color " + mobile.color);
+        console.log("price " + mobile.price);
+        console.log("memory " + mobile.memory);
+        console.log("port " + mobile.port);
+        console.log("fullName " + mobile.fullName()) 
+        console.log("=============================")
+
+        var bike= new Object()
+        bike.name = "Royal Enfield"
+        bike.color = "black"
+        bike.price = "120000RS"
+        
+        bike.fullName=function(){
+            return bike.name +" "+ bike.color +" " + bike.price
+        }
+
+        console.log("Name " + bike.name);
+        console.log("color " + bike.color);
+        console.log("price " + bike.price);
+        console.log("fullName " + bike.fullName()) 
+
+
+        console.log("==============================")
+        var Bus= new Object()
+        Bus.name = "Ashok Leyland"
+        Bus.color = "Blackandgrey"
+        Bus.seat= 42,
+        Bus.fullName=function(){
+            return Bus.name +" "+ Bus.color +" " + Bus.seat
+        }
+
+        console.log("Name " + Bus.name);
+        console.log("color " + Bus.color);
+        console.log("price " + Bus.seat);
+        console.log("fullName " + Bus.fullName()) 
+
+        console.log("==============================")
+        var company= new Object()
+        company.name = "Oneplus"
+        company.location = "America"
+        company.manufacture = "china"
+        
+        company.fullName=function(){
+            return company.name +" "+ company.location +" " +company.manufacture
+        }
+
+        console.log("Name " + company.name);
+        console.log("loaction " + company.location);
+        console.log("manufacture " + company.manufacture);
+        
+        console.log("fullName " + company.fullName()) 
+
+        console.log("================================");
+        var mask= new Object()
+        mask.name = "sprint"
+        mask.color = "more",
+        mask.price = "50/per"
+        mask.location = "shop",
+        
+        mask.fullName=function(){
+            return mask.name +" "+ mask.color +" " + mask.price +" "+ mask.location
+        }
+
+        console.log("Name " + mask.name);
+        console.log("color " + mask.color);
+        console.log("price " + mask.price);
+        console.log("location " + mask.location);
+        console.log("fullName " + mask.fullName()) 
+    </script>
+    
+</body>
+</html>

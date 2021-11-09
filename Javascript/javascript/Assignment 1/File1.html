@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 - Object</title>
+</head>
+<body>
+    <script>
+         var mobile={
+            mobileName : "Oneplus",
+            modelName  :  "M2-D50",
+            price  : 100000.9,
+            color : "Black",
+            fullName: function() {
+                return this.mobileName +" " +this.modelName
+            }
+
+        }
+        console.log("mobile Name "+ mobile.mobileName)
+        console.log("model Name "+ mobile.modelName)
+        console.log("price " + mobile.price)
+        console.log("color "+ mobile.color);
+        var fullName = mobile.fullName()
+        console.log("Full name "+ fullName);
+        console.log("==========================")
+
+        var student={
+            firstName : "Rajendra",
+            lastName  :  "DB",
+            age : 23,
+            location: "Bagalkot",
+            fullName: function() {
+                return this.firstName +" " +this.lastName
+            }
+
+        }
+        console.log("first Name "+ student.firstName)
+        console.log("last Name "+ student.lastName)
+        console.log("age " + student.age)
+        console.log("location "+ student.location);
+        var fullName = student.fullName()
+        console.log("Full name "+ fullName);
+        console.log("==========================")
+
+        var amazon={
+            firstName : "amazon",
+            brand :  "standard",
+            use:   "more people",
+            fullName : function() {
+                return this.firstName +" " +this.brand
+            }
+
+        }
+        console.log("first Name "+ amazon.firstName)
+        console.log("brand "+ amazon.brand)
+        console.log("use " + amazon.use)
+        var fullName = amazon.fullName()
+        console.log("Full name "+ fullName);
+
+
+        console.log("==================")
+
+        var car={
+            name :"skoda",
+            price  : 100000.9,
+            manufacture : 'italy',
+            fullName : function(){
+                return this.name +" "+this.price
+            }
+        }
+        console.log("name "+car.name)
+        console.log("price "+car.price)
+        console.log("manufacture "+car.manufacture)
+        var fullName = car.fullName()
+        console.log("Full name "+ fullName);
+
+        console.log("=======================")
+
+
+        var company={
+            name :"ABB",
+            location :"bengaluru",
+            fullName : function(){
+                return this.name +" "+this.location
+            }
+        }
+        console.log("name "+company.name)
+        console.log("location "+company.price)
+        var fullName = company.fullName()
+        console.log("Full name "+ fullName);
+        
+    </script>
+    
+</body>
+</html>

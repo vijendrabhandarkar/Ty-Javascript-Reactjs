@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.navbar-div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.inDivOne{
+    /* margin-right: 10rem; */
+}
+
+button{
+  padding: 1rem 5rem 1rem 5rem;
+  background:#000000;
+  border-radius: 0.2rem;
+  color:#ffffff;
+  border: transparent;
+}
+
+.navbar-div{
+    background: #E0E0E2;
+}

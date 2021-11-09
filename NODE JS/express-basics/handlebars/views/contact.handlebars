@@ -1,0 +1,11 @@
+<div>
+<h1>Contact Page</h1>
+{{#each users}}
+<p>{{this}}</p>
+{{/each}}
+{{#if isAdmin}}
+<p>I'm an admin</p>
+{{else}}
+<p>I'm not an admin</p>
+{{/if}} 
+</div>

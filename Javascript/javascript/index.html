@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        console.log("Let's rock");
+        console.log("===================================================");
+
+         var name = "Alia";
+         console.log( "name "+ name)
+         var age = 28;
+         console.log("age "+ age)
+         var isMarried = false;
+         console.log("ismarried "+ isMarried)
+         var x;
+         console.log("X "+ x);
+         var Y=null;
+         console.log("Y "+ Y);
+         console.log("===================================================");
+
+    </script>
+</head>
+<body>
+    <h1><input type="number"> height</h1>
+    <h1><input type="number">Weight</h1>
+    <script>
+        var person={
+            firstName : "penga",
+            lastName  :  "D",
+            age   : 16,
+            color : "White",
+            fullName : function() {
+                return this.firstName +" " +this.lastName
+            }
+
+        }
+        console.log("first Name "+ person.firstName)
+        console.log("last Name "+ person.lastName)
+        console.log("age " + person.age)
+        console.log("color "+ person.color);
+        var fullName = person.fullName()
+        console.log("Full name "+ fullName);
+        console.log("===================================================")
+
+        console.log("First Name " + person["firstName"])
+        console.log("Last Name " + person["lastName"])
+        console.log("Age " + person["age"] )
+        console.log("color "+ person["color"])
+        var fullName = person["fullName"]() 
+        console.log("Full Name "+ fullName);
+
+
+        console.log("===================================================")
+        var car = new Object()
+        car.name = "BMW"
+        car.color = "red"
+        car.price = "1000000.9"
+        console.log("Name " + car.name);
+        console.log("color " + car.color);
+        console.log("price " + car.price);
+
+        console.log("=========================")
+        var data="12"
+        var number=12
+        if(data===number){
+            console.log("Equal");
+        }else{
+            console.log("not Equal");
+
+        }
+
+        console.log("===========================");
+
+
+        var age = 12
+        age > 18 ? console.log("Eligible for Voting"): console.log("not eligible for voting");  
+
+
+        console.log("==========================");
+
+        var percentage = 80
+        // console.log(typeof percentage)
+        typeof percentage !== 'number' || percentage <0 || percentage >100 ? 
+        console.log("Invalid"):
+        percentage >=70 ? console.log("Distinction"):
+        percentage >=35 ? console.log("Pass") : console.log("Fail"); 
+
+
+        console.log("==========================")
+        var x=undefined
+        console.log("type of x " + typeof x);
+        var y= null
+        console.log("type of y " + typeof y);
+        var isValid = false
+        console.log("type of isValid "+typeof(isValid));
+
+        console.log("=================================");
+
+        var data=null
+        // if( typeof (data)!==null) not used like that
+        
+        if(data)
+        {
+            console.log("defined")
+        }else{
+            console.log("undefined")
+            
+        }
+        console.log("=========================");
+         
+
+
+
+
+        // Assignment
+        // var BMI=new Object()
+        // // console.log(typeof percentage)
+        // typeof BMI !== 'number' || BMI <0.0 || BMI >100.0 ? 
+        // console.log("Invalid"):
+        // BMI >=39.9 ? console.log("obese"):
+        // BMI >=18.5 ? console.log("healthy") : console.log("underweight"); 
+        console.log("=======================")
+
+    
+        
+        </script>
+    
+</body>
+</html>

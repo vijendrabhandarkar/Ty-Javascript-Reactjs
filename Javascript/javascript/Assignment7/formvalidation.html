@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="formvalidation.js"></script>
+
+    
+</head>
+<body>
+    <div class="conatainer"><br>
+        <h1 class="text-success text-center ">Form Validation</h1><br>
+        <div class="col-lg-8 m-auto d-block">
+            <form  id="user"action="#" onsubmit=" return validation()" class="bg-light">
+                <div class="form-group">
+                    <label for="">Name:</label>
+                    <input type="text" name="user1" class="form-control" id="user1" autocomplete="off">
+                    <span id="Namee" class="text-danger font-weight-bold"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="">Age:</label>
+                    <input type="text" name="age" class="form-control" id="age"autocomplete="off">
+
+                </div>
+                <div class="form-group">
+                    <label for="">Subject Studied:</label>
+                    <input type="checkbox" name="">JavaScript
+                    <input type="checkbox" name="">Python
+                    <input type="checkbox" name="">C++
+
+                </div>
+                <br>
+                <div>
+                    <label for="">Male</label>
+                    <input type="radio" id="male" name="gender"/>
+                    <label for="">Female</label>
+                    <input type="radio" name="gender" id="female">
+                    </div>
+
+    
+
+                <div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Password:</label>
+                        <input type="password" name="pass" class="form-control" id="pass"autocomplete="off">
+                </div><br>
+                <div>
+                    <label>Email</label>
+                    <input type="email" name="" class="form-control" id="emails"autocomplete="off" placeholder="@gmail.com">
+                </tr>
+                </div>
+                <br>
+                <div>
+                   
+                    <select class="form-control text-center">
+        
+                        <option class="form-control">...Select...</option>
+                        <option>Indian</option>
+                        <option>American</option>
+                        <option>African</option>
+                       </select><br>
+                       <label for="">Agree for the terms and conditions</label>
+                       <input type="checkbox" name ="" id="Agree"/>
+                       <button id="checkAgree">check agree checkbox</button>
+                </div>
+                
+                    
+                
+                <button type="button" class="btn btn-success"autocomplete="off">Submit</button>
+
+
+            
+            </form>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

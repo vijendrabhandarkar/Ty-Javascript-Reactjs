@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        //keep a count of the number of times the button is clicked
+        function clickCounter() {
+            if (typeof (Storage) != "undefined") {
+                if (sessionStorage.clickCount) {
+                    //increment counter
+                    sessionStorage.clickCount = Number(sessionStorage.clickCount) + 1;
+                } else {
+                    //initialise counter
+                    sessionStorage.clickCount = 1;
+                }
+                document.getElementById("button").innerHTML = "You have clicked the button " + sessionStorage.clickCount + " time(s) in this session.";
+            } else {
+                document.getElementById("button").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }
+        //clear counter on button click
+        function clearCounter() {
+            if (typeof (Storage) != "undefined"){
+                //delete saved counter
+                sessionStorage.removeItem("clickCount");
+                document.getElementById("button").innerHTML = "You have clicked the button 0 time(s) in this session.";
+            }
+            else
+                document.getElementById("button").innerHTML = "Sorry, your browser does not support web storage...";
+        }
+    </script>
+</head>
+
+<body>
+    <p><button onclick="clickCounter()" type="button">Click me!</button></p>
+    <p><button onclick="clearCounter()" type="button">Reset</button></p>
+    <div id="button"></div>
+    <p>Click the button to see the counter increase.</p>
+    <p>Click the reset button to clear the counter.</p>
+    <p>Close the browser tab (or window), and try again, and the counter is reset.</p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>sessionStorage</title>
+  <script type="text/javascript" src="session.js"></script>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+</head>
+
+<body>
+  <div class="container" id="formDiv">
+        <form class="form-signin" id="carForm">
+            <h1>Enter details</h1>
+            <label for="carBrand" class="sr-only">Car</label>
+            <input type="text" id="carBrand" class="form-control" placeholder="Car brand" required autofocus><br>
+            <label for="carPrice" class="sr-only">Price</label>
+            <input type="text" id="carPrice" class="form-control" placeholder="Price" required><br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+
+        <button class="btn btn-lg btn-primary btn-block" id="retrieveButton">Retrieve records</button>
+        <div id="retrieve"></div>
+
+        <button class="btn btn-lg btn-danger btn-block" id="removeButton">Remove record</button>
+        <button class="btn btn-lg btn-danger btn-block" id="clearButton">Clear all records</button>
+  </div>
+
+</body>
+</html>

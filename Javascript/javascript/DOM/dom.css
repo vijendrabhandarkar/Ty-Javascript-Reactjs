@@ -1,0 +1,16 @@
+.demo {
+  border: 1px solid gray;
+  background: antiquewhite;
+  width: 100px;
+}
+.randomStyle {
+  border: 1px solid red;
+  color: rosybrown;
+  background: seashell;
+  width: 400px;
+}
+
+.randomStyle1 {
+  opacity: 0.5;
+  margin: 20px;
+}

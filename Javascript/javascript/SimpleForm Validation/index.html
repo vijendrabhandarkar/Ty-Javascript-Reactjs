@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form Validation in HTML and Javascript</title>
+</head>
+<body>
+    <form id="form" method="post" style="text-align: center">
+        <div id="message"></div>
+        <input type="text" id="username" placeholder="Username"/><br><br>
+        <input type="password" id="password" placeholder="Password"/><br><br>
+        <input type="submit" value="Register"/>
+
+    </form>
+    
+</body>
+<script>
+    const form = document.getElementById(`form`)
+    const error = [];
+    form.addEventListener('submit',function(e){
+        e.preventDefault()
+        const username = document.getElementById (`username`)
+        const password = document.getElementById(`password`)
+        if (username.value === ""){
+            error.push("Please enter the username")
+        }
+        if (password.value ===""){
+            error.push("Please enter the password")
+        }
+        const message1 = document.getElementById(`message`)
+        message.innerText = error
+
+    })
+</script>
+</html>
