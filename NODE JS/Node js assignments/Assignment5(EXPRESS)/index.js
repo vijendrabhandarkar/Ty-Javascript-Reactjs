@@ -11,12 +11,12 @@ app.set("view engine", "handlebars");
 
 // let products = [];
 
-//middleware
+//Application-level middleware
 const getData = (req, res, next) => {
   console.log("Middleware function to have transparency local variable");
   //next should be called if the request need to be passed to next routes
   // const data=Date.now()
-  req.reqUrl = url.parse(req.url, true);
+  // req.reqUrl = url.parse(req.url, true);
   // req.path = reqUrl.pathname;
   // req.products=[]
   fs.readFile("./database.json", (err, data) => {
@@ -35,7 +35,7 @@ const getData = (req, res, next) => {
     }
   });
 };
-// //middleware
+//middleware-call
 app.use(getData);
 
 // const getData=(dataArray)=>{
@@ -53,33 +53,16 @@ app.get("/", (req, res) => {
 
 app.get("/products/products", (req, res) => {
   //read the json object and update it inside local-variable:products
-  fs.readFile("./database.json", (err, data) => {
-    if (err) {
-      // res.writeHead(404, {
-      //   "content-type": "text/plain",
-      // });
-      res.write("File not found\n");
-      res.write("Not able to read the data");
-      res.send("Not able to read the data");
-    } else {
-      // res.writeHead(200, {
-      //   "content-type": "text/html",
-      // });
-      // res.write(data);
-      console.log("data inside JSON file", data.toString());
-      const parcedArrObj = JSON.parse(data.toString());
-      console.log("data inside JSON file of type", parcedArrObj);
-      // req.products = data;
-      let products = parcedArrObj;
-      // req.products=products
+  
+      let products = req.products;
       console.log("my req prods", req.products);
       res.render("./products.handlebars", {
         products,
       });
       // console.log("read products from local variable-----", products);
       // res.end();
-    }
-  });
+    
+  
 });
 
 app.get("/products/add-product", (req, res) => {
@@ -101,7 +84,18 @@ app.post("/products/add-product", (req, res) => {
   console.log("product after adding into local variable!!!", products);
   //---------------------------------------------------------------
   //now i have already read using Application-level Middleware and now, i have to write the products to the file
-
+  //`products=${JSON.stringify(products)}`
+  /* 
+  fs.writeFile("./database.js", `products=${JSON.stringify(products)}`, (fileErr) => {
+    if (fileErr) {
+      console.log("File err", fileErr);
+      res.send("File err");
+    } else {
+      console.log("Data written successfully");
+      res.redirect("/products/products");
+    }
+  });
+  */
   fs.writeFile("./database.json", JSON.stringify(products), (fileErr) => {
     if (fileErr) {
       console.log("File err", fileErr);
@@ -132,7 +126,7 @@ app.get("/products/edit-product/:_id", (req, res) => {
   // res.send("Product edit success")
 });
 
-app.post("/products/edit-product", async(req, res) => {
+app.post("/products/edit-product", async (req, res) => {
   let products = req.products;
   console.log("products accessed from local variable!!!", products);
   console.log("Request Body - ", req.body);
@@ -142,7 +136,7 @@ app.post("/products/edit-product", async(req, res) => {
   const index = products.findIndex((product) => {
     return parseInt(product._id) === _id;
   });
-  console.log("index:",index);
+  console.log("index:", index);
   products.splice(index, 1, { _id, pName, pDesc, pPrice });
   fs.writeFile("./database.json", JSON.stringify(products), (fileErr) => {
     if (fileErr) {
@@ -153,9 +147,11 @@ app.post("/products/edit-product", async(req, res) => {
       res.redirect("/products/products");
     }
   });
-  console.log("products accessed after editing the local variable!!!", products);
+  console.log(
+    "products accessed after editing the local variable!!!",
+    products
+  );
 
-  
   // products.push({ _id, pName, pDesc, pPrice });
   //   res.send("Product Added Successfully");
   // res.redirect("/products/products");
@@ -163,14 +159,20 @@ app.post("/products/edit-product", async(req, res) => {
 
 app.get("/products/delete-product/:_id", (req, res) => {
   let products = req.products;
-  console.log("products accessed from local variable before deletion process!!!", products);
+  console.log(
+    "products accessed from local variable before deletion process!!!",
+    products
+  );
   // console.log(req.query._id);
   console.log(req.params._id);
   const index = products.findIndex((product) => {
     return parseInt(product._id) === parseInt(req.params._id);
   });
   products.splice(index, 1);
-  console.log("products accessed from local variable after deletion process!!!", products);
+  console.log(
+    "products accessed from local variable after deletion process!!!",
+    products
+  );
   fs.writeFile("./database.json", JSON.stringify(products), (fileErr) => {
     if (fileErr) {
       console.log("File err", fileErr);

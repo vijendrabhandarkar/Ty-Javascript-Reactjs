@@ -1,0 +1,39 @@
+#fName,#lName{
+    margin: auto;
+   width:200px;
+   display: inline;
+   
+}
+label{
+    padding: 10px;
+}
+#age{
+    margin: auto;
+    width:200px;
+   display: inline; 
+}
+#AAG{
+    margin-right: 47px;
+}
+#formContainer{
+    background: rgba(0, 204, 255, 0.23) ;
+    margin: auto;
+    padding: 2px 2px 5px 2px;
+    border-radius: 6px;
+    width: 30vw;
+}
+#formContainer:hover{
+    background: rgba(0, 204, 255, 0.34) ;
+}
+.btn-primary{
+    padding: 2px 12px 2px 12px;
+    border-radius: 7px 0 7px 0;
+}
+.btn-primary:hover{
+background-color: rgb(6, 211, 6);
+box-shadow: 1px 1px 3px rgba(0, 204, 255, 0.6);
+}
+.errormsg{
+    color:red;
+    
+}
