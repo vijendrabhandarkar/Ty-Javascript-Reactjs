@@ -1,0 +1,54 @@
+<div class="container">
+<form action="/products/edit-product" method="POST">
+  <div class="mb-3">
+    
+    <input type = "hidden"
+    name="_id"
+    class="form-control"
+    id="pid"
+    value="{{selectedProduct._id}}"
+    placeholder="Enetr Product Id"
+    aria-describedby="pid">
+  </div>
+   <div class="mb-3">
+    <lable for ="pname" class="form-label">
+        Product Name
+    </lable>
+    <input type = "text"
+    name="pName"
+    placeholder="Enetr Product Name"
+    class="form-control"
+    id="pname"
+    value="{{selectedProduct.pName}}"
+
+    aria-describedby="pid">
+  </div>
+   <div class="mb-3">
+    <lable for ="pname" class="form-label">
+        Product Description
+    </lable>
+    <input type = "text"
+    name="pDesc"
+    placeholder="Enetr Product Description"
+    class="form-control"
+    id="pdesc"
+    value="{{selectedProduct.pDesc}}"
+
+    aria-describedby="pid">
+  </div>
+   <div class="mb-3">
+    <lable for ="pname" class="form-label">
+        Product Price
+    </lable>
+    <input type = "number"
+    name="pPrice"
+    placeholder="Enetr Product Price"
+    class="form-control"
+    id="pprice"
+    value="{{selectedProduct.pPrice}}"
+
+    aria-describedby="pid">
+  </div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <form action="/orders/create-order" method="POST">
+    <div class="mb-3">
+      <label for="pid" class="form-label">ID</label>
+      <input
+        type="text"
+        name="_id"
+        class="form-control"
+        id="pid"
+        aria-describedby="pid"
+      />
+
+    </div>
+    <div class="mb-3">
+      <label for="pQuantity" class="form-label">Product Quantity</label>
+      <input
+        type="number"
+        name="pQuantity"
+        class="form-control"
+        id="pQuantity"
+        aria-describedby="pname"
+      />
+
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Create Order</button>
+  </form>
+</div>

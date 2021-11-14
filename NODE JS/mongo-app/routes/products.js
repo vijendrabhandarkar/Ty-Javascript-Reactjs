@@ -64,7 +64,7 @@ router.post("/add-product", async(req, res) => {
 }); */
 
 router.get("/edit-product/:_id", async(req, res) => {
-  // console.log(req.query._id);
+  //console.log("req.query._id",req.query._id);//undefined
   console.log(req.params._id);
   try {
     const productToEdit=await product.findOne({
@@ -123,7 +123,7 @@ router.get("/delete-product/:_id", async(req, res) => {
   console.log(req.params._id);
   const _id=req.params._id;
   try{
-     await product.deleteOne({_id:_id})
+     await product.deleteOne({_id})
     /* await product.deleteMany({
       _id:['618bb53afec5632888c2fe7b','618cf23e6523f1cba0090d48']
     }) */
@@ -139,4 +139,25 @@ router.get("/delete-product/:_id", async(req, res) => {
   // res.send("Product edit success")
 });
 
+/* router.post("/search-products", async(req, res) => {
+  console.log("Request Body - ", req.body);
+  let {matchingProducts}=req.body
+  try {
+    await product.updateOne({
+      _id
+    },{
+      $set:{
+        pName,
+        pDesc,
+        pPrice
+      }
+    },{
+      runValidators:true
+    })
+    ///////(response sent to: browser will make this redirect request internally-->new request along with: router.post("/edit-product"
+    res.redirect("/products/products");
+  } catch (error) {
+    res.redirect("/error");
+  }
+}); */
 module.exports = router;
