@@ -7,7 +7,7 @@ const port=2000
 app.use(cookieParser())
 
 ///read-cookie
-app.get("/read-cookie",(req,res)=>{
+app.get("/read-cookies",(req,res)=>{
     console.log(req.cookies); 
     // req.cookies.myName
     /* if(req.cookies.myName){
@@ -26,6 +26,7 @@ app.get("/read-cookie",(req,res)=>{
 //creating non-persistent cookie
 app.get("/create-cookie",(req,res)=>{
     res.cookie("myName","Vijendra")
+    // res.cookie("age","25")
     res.send("Cookies is created")
 })
 

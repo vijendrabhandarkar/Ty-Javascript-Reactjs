@@ -12,7 +12,7 @@ const router = express.Router();
 ]; */
 ////
 const product = require("../models/product");
-const order= require("../models/order")
+const order = require("../models/order");
 
 router.get("/products", async (req, res) => {
   try {
@@ -156,47 +156,119 @@ router.post("/searched-products", async (req, res) => {
   try {
     const searchedProducts = await product
       // .find({ "txt": { $search: txt } })
-      .find({$or:[{"pName": new RegExp(txt,"i")},{"pDesc": new RegExp(txt,"i")}]})
+      .find({
+        $or: [{ pName: new RegExp(txt, "i") }, { pDesc: new RegExp(txt, "i") }],
+      })
       .lean();
     ///////(response sent to: browser will make this redirect request internally-->new request along with: router.post("/edit-product"
-    res.render('./searched-products',{
+    res.render("./searched-products", {
       searchedProducts,
-  })
-  
-  // res.redirect("/products/products");
+    });
+
+    // res.redirect("/products/products");
   } catch (error) {
     console.log("crazy");
     res.redirect("/error");
   }
 });
 
-
-router.get('/orders',async(req,res)=>{
-  const products = await product.find().lean(); 
-  const orders = await order.find().lean(); 
-  const orderedProducts=[...products,...orders]
+router.get("/orders", async (req, res) => {
+  // const products = await product.find().lean();
+  // const orders = await order.find().lean();
+  // const orderedProducts=[...products,...orders]
+  //
+  const orderedProducts = await order.find().lean();
   console.log(orderedProducts);
-  res.render('./orders.handlebars',{
-    orderedProducts
-  })
-})
+  res.render("./orders.handlebars", {
+    orderedProducts,
+  });
+});
 
-router.get('/create-order',(req,res)=>{
-  res.render('./create-order.handlebars')
-})
+router.get("/create-order", (req, res) => {
+  res.render("./create-order.handlebars");
+});
 
 //create-order has to be redirected to '/orders'
 router.post("/create-order", async (req, res) => {
   console.log("Request Body - ", req.body);
-
+  console.log("type of body---->", typeof req.body);
+  console.log("key--->", req.body._id);
+  const oid = req.body._id;
+  const pQuantity = req.body.pQuantity;
+  /*  const orderInsersion=async(pName,pDesc,pPrice,pQuantity,totalPrice)=>{
+    
+      await order.insertMany([
+        {
+          pName,
+          pDesc,
+          pPrice,
+          pQuantity,
+          totalPrice
+        },
+      ]);
+      //  res.redirect('/orders/orders')
+    
+  } */
+  // console.log("oQuantity--",oQuantity);
+  const products = await product.find().lean();
   //----------------------------------------------------------------------------------------------
-  //while inserting to orders DB we need to insert only the object matching the _id(from product) 
+  //while inserting to orders DB we need to insert only the object matching the _id(from product)
+  let isMatched = false;
+  let matchedObj;
+  products.forEach((value) => {
+    console.log(value._id.toString() === oid);
+    // console.log(value.pPrice);
+    if (value._id.toString() === oid) {
+      isMatched = true;
+      matchedObj = value;
+    }
+  });
+  if (isMatched) {
+    console.log(matchedObj.pPrice);
+    const totalPrice = matchedObj.pPrice * pQuantity;
+    console.log(totalPrice);
 
+    let { pName, pDesc, pPrice } = matchedObj;
+    try {
+      // orderInsersion(pName,pDesc,pPrice,pQuantity,totalPrice)
+      await order.insertMany(
+        [
+          {
+            pName,
+            pDesc,
+            pPrice,
+            pQuantity,
+            totalPrice,
+          },
+        ],
+        {
+          runValidators: true,
+        }
+      );
+      res.redirect("/orders/orders");
+    } catch (err) {
+      res.redirect("/error");
+    }
+  } else {
+    res.send(`There is no Matching Product with this ID ${oid}
+So, please write a valied Product ID`);
+  }
+  //insert the product object, quantity and totalPrice, to orders DB
 
+  //redirect to "/orders/orders"
 
+  /*  else {
+      res.redirect("/products/products");
+      // send("The id is not matching")
+    } */
 
+  //if we find that object matching with the id
+  //---->>then only pass that matched product into orders DB
+
+  //else
+  //---->>
   //----------------------------------------------------------------------------------------------
-  res.redirect('/orders/orders')
+  // res.redirect('/orders/orders')
   /* const { txt } = req.body;
   console.log(txt);
   try {

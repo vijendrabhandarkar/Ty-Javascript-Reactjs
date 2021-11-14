@@ -2,7 +2,6 @@ const express=require("express")
 const exhbs=require("express-handlebars")
 const sessions=require("express-session")
 const cookieParser=require("cookie-parser")
-const { redirect } = require("statuses")
 
 const app=express()
 const port=2000
