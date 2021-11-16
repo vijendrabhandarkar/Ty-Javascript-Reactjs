@@ -33,8 +33,9 @@ router.get("/add-product", (req, res) => {
 });
 
 router.post("/add-product", async (req, res) => {
-  console.log("Request Body - ", req.body);
+  console.log("Request Body - ", typeof req.body);
   let { _id, pName, pDesc, pPrice } = req.body;
+  console.log(typeof pPrice);
   // _id = parseInt(_id);
   pPrice = parseInt(pPrice);
   // products.push({ _id, pName, pDesc, pPrice });
@@ -195,6 +196,7 @@ router.post("/create-order", async (req, res) => {
   console.log("key--->", req.body._id);
   const oid = req.body._id;
   const pQuantity = req.body.pQuantity;
+  console.log("pQuantity-->",typeof pQuantity);
   /*  const orderInsersion=async(pName,pDesc,pPrice,pQuantity,totalPrice)=>{
     
       await order.insertMany([
@@ -211,6 +213,7 @@ router.post("/create-order", async (req, res) => {
   } */
   // console.log("oQuantity--",oQuantity);
   const products = await product.find().lean();
+  // console.log("::::---",typeof products[0].pPrice);
   //----------------------------------------------------------------------------------------------
   //while inserting to orders DB we need to insert only the object matching the _id(from product)
   let isMatched = false;
@@ -227,7 +230,7 @@ router.post("/create-order", async (req, res) => {
     console.log(matchedObj.pPrice);
     const totalPrice = matchedObj.pPrice * pQuantity;
     console.log(totalPrice);
-
+    console.log("totalPrice###",typeof totalPrice);
     let { pName, pDesc, pPrice } = matchedObj;
     try {
       // orderInsersion(pName,pDesc,pPrice,pQuantity,totalPrice)
