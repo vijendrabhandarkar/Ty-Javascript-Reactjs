@@ -58,6 +58,8 @@ app.all("*",(req,res)=>{
 app.use((err,req,res,next)=>{
     // res.status(500)
     // res.send(err.message)
+
+    //express is handling this error
     next(err)
 })
 

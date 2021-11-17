@@ -14,14 +14,21 @@ const router = express.Router();
 const product = require("../models/product");
 const order = require("../models/order");
 
+const user = "vijendra";
+const pwd = "vijendra";
+
 router.get("/products", async (req, res) => {
-  try {
-    const products = await product.find().lean();
-    res.render("./products.handlebars", {
-      products,
-    });
-  } catch (err) {
-    res.redirect("/error");
+  if (req.session.userpwd) {
+    try {
+      const products = await product.find().lean();
+      res.render("./products.handlebars", {
+        products,
+      });
+    } catch (err) {
+      res.redirect("/error");
+    }
+  } else {
+    res.redirect("/products/login");
   }
   /* res.render("./products.handlebars", {
     products,
@@ -29,7 +36,11 @@ router.get("/products", async (req, res) => {
 });
 
 router.get("/add-product", (req, res) => {
-  res.render("./add-product.handlebars");
+  if (req.session.userpwd) {
+    res.render("./add-product.handlebars");
+  } else {
+    res.redirect("/products/login");
+  }
 });
 
 router.post("/add-product", async (req, res) => {
@@ -67,17 +78,21 @@ router.post("/add-product", async (req, res) => {
 router.get("/edit-product/:_id", async (req, res) => {
   //console.log("req.query._id",req.query._id);//undefined
   console.log(req.params._id);
-  try {
-    const productToEdit = await product
-      .findOne({
-        _id: req.params._id,
-      })
-      .lean();
-    res.render("./edit-product.handlebars", {
-      selectedProduct: productToEdit,
-    });
-  } catch (error) {
-    res.redirect("/error");
+  if (req.session.userpwd) {
+    try {
+      const productToEdit = await product
+        .findOne({
+          _id: req.params._id,
+        })
+        .lean();
+      res.render("./edit-product.handlebars", {
+        selectedProduct: productToEdit,
+      });
+    } catch (error) {
+      res.redirect("/error");
+    }
+  } else {
+    res.redirect("/products/login");
   }
   // const index = products.findIndex((product) => {
   //   return parseInt(product._id) === parseInt(req.params._id);
@@ -127,16 +142,20 @@ router.post("/edit-product", async (req, res) => {
 
 router.get("/delete-product/:_id", async (req, res) => {
   // console.log(req.query._id);
-  console.log(req.params._id);
-  const _id = req.params._id;
-  try {
-    await product.deleteOne({ _id });
-    /* await product.deleteMany({
+  if (req.session.userpwd) {
+    console.log(req.params._id);
+    const _id = req.params._id;
+    try {
+      await product.deleteOne({ _id });
+      /* await product.deleteMany({
       _id:['618bb53afec5632888c2fe7b','618cf23e6523f1cba0090d48']
     }) */
-    res.redirect("/products/products");
-  } catch (err) {
-    res.redirect("/error");
+      res.redirect("/products/products");
+    } catch (err) {
+      res.redirect("/error");
+    }
+  } else {
+    res.redirect("/products/login");
   }
   /* const index = products.findIndex((product) => {
     return parseInt(product._id) === parseInt(req.params._id);
@@ -178,15 +197,27 @@ router.get("/orders", async (req, res) => {
   // const orders = await order.find().lean();
   // const orderedProducts=[...products,...orders]
   //
-  const orderedProducts = await order.find().lean();
-  console.log(orderedProducts);
-  res.render("./orders.handlebars", {
-    orderedProducts,
-  });
+  if (req.session.userpwd) {
+    try {
+      const orderedProducts = await order.find().lean();
+      console.log(orderedProducts);
+      res.render("./orders.handlebars", {
+        orderedProducts,
+      });
+    } catch (err) {
+      res.redirect("/error");
+    }
+  } else {
+    res.redirect("/products/login");
+  }
 });
 
 router.get("/create-order", (req, res) => {
-  res.render("./create-order.handlebars");
+  if (req.session.userpwd) {
+    res.render("./create-order.handlebars");
+  } else {
+    res.redirect("/products/login");
+  }
 });
 
 //create-order has to be redirected to '/orders'
@@ -196,7 +227,7 @@ router.post("/create-order", async (req, res) => {
   console.log("key--->", req.body._id);
   const oid = req.body._id;
   const pQuantity = req.body.pQuantity;
-  console.log("pQuantity-->",typeof pQuantity);
+  console.log("pQuantity-->", typeof pQuantity);
   /*  const orderInsersion=async(pName,pDesc,pPrice,pQuantity,totalPrice)=>{
     
       await order.insertMany([
@@ -230,7 +261,7 @@ router.post("/create-order", async (req, res) => {
     console.log(matchedObj.pPrice);
     const totalPrice = matchedObj.pPrice * pQuantity;
     console.log(totalPrice);
-    console.log("totalPrice###",typeof totalPrice);
+    console.log("totalPrice###", typeof totalPrice);
     let { pName, pDesc, pPrice } = matchedObj;
     try {
       // orderInsersion(pName,pDesc,pPrice,pQuantity,totalPrice)
@@ -289,5 +320,28 @@ So, please write a valied Product ID`);
     console.log("crazy");
     res.redirect("/error");
   } */
+});
+
+router.get("/login", (req, res) => {
+  res.render("./login.handlebars");
+});
+
+//session Creation
+router.post("/login", (req, res) => {
+  console.log(req.body);
+  const { username, password } = req.body;
+  if (username === user && password === pwd) {
+    console.log(req.session);
+    req.session.userpwd = password;
+    res.redirect("/products/products");
+  } else {
+    res.redirect("/products/login");
+  }
+});
+
+//session destroy
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/products/login");
 });
 module.exports = router;

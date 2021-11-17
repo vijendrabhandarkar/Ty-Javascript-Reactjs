@@ -1,6 +1,6 @@
 <div class="container">
   <form action="/products/add-product" method="POST">
-    {{!-- <div class="mb-3">
+    {{! <div class="mb-3">
       <label for="pid" class="form-label">ID</label>
       <input
         type="number"
@@ -10,7 +10,7 @@
         aria-describedby="pid"
       />
 
-    </div> --}}
+    </div> }}
     <div class="mb-3">
       <label for="pname" class="form-label">Product Name</label>
       <input
@@ -45,5 +45,8 @@
 
     </div>
     <button type="submit" class="btn btn-primary">ADD Product</button>
+    <a href="/products/logout"><button
+        class="btn btn-danger"
+      >Logout</button></a>
   </form>
 </div>

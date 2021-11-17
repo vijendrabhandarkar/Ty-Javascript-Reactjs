@@ -1,26 +1,37 @@
 <div class="container">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Price</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
       {{#each searchedProducts}}
-    <tr>
-      <th scope="row">{{_id}}</th>
-      <td>{{pName}}</td>
-      <td>{{pDesc}}</td>
-      <td>{{pPrice}}</td>
-      <td><form action="/products/edit-product/{{_id}}" method="GET"><button type="submit" class="btn btn-primary">Edit</button></form> </td>
-      <td><form action="/products/delete-product/{{_id}}" method="GET"><button type="submit" class="btn btn-danger">Delete</button></form> </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+        <tr>
+          <th scope="row">{{_id}}</th>
+          <td>{{pName}}</td>
+          <td>{{pDesc}}</td>
+          <td>{{pPrice}}</td>
+          <td><form action="/products/edit-product/{{_id}}" method="GET"><button
+                type="submit"
+                class="btn btn-primary"
+              >Edit</button></form>
+          </td>
+          <td><form
+              action="/products/delete-product/{{_id}}"
+              method="GET"
+            ><button type="submit" class="btn btn-danger">Delete</button></form>
+          </td>
+        </tr>
+      {{/each}}
+      <a href="/products/logout"><button
+          class="btn btn-danger"
+        >Logout</button></a>
+    </tbody>
+  </table>
 </div>

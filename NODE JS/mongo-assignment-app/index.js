@@ -16,7 +16,7 @@ app.use(
   sessions({
     secret: "thisisasecretkey",
     saveUninitialized: true,
-    resave: false,
+    resave: false.valueOf,
     cookie: {
       maxAge: oneDay,
     },
@@ -64,18 +64,19 @@ mongoose.connect(
 );
 
 //importing products route
-let productsRoute;
+let productsRoute = require("./routes/products");
 
 // body parser middleware
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/user", (req, res) => {
-  console.log(req.session);
-  if (req.session.userid) {
-    productsRoute = require("./routes/products");
+
     //router level middleware
     app.use("/products", productsRoute);
     app.use("/orders", productsRoute);
+/* app.get("/user", (req, res) => {
+  console.log(req.session);
+  if (req.session.userid) {
+    
 
     res.render("./landingpage.handlebars");
     res.send('session validation  <a href="/logout">Logout</a>');
@@ -98,15 +99,10 @@ app.post("/login", (req, res) => {
 app.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
-});
+}); */
 
 app.get("/", (req, res) => {
-  if (req.session.userid) {
-    res.redirect("/user");
-  } else {
-    res.render("./login.handlebars");
-  }
-  // res.render("./landingpage.handlebars");
+  res.render("./landingpage.handlebars");
 });
 
 app.get("/error", (req, res) => {
